@@ -3,10 +3,10 @@ name: Deploy Terraform
 on:
   push:
     branches:
-      - Terraform/davidhei
+      - main
   pull_request:
     branches:
-      - Terraform/davidhei
+      - main
 
 jobs:
   deploy:
