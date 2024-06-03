@@ -1,0 +1,48 @@
+name: Deploy Terraform
+
+on:
+  push:
+    branches:
+      - Terraform/davidhei
+  pull_request:
+    branches:
+      - Terraform/davidhei
+
+jobs:
+  deploy:
+    name: Deploy to AWS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.8.4
+
+      - name: Terraform Init
+        run: |
+          cd tf_workspace
+          terraform init
+
+      - name: Select Workspace 1
+        run: terraform workspace new us-east-1
+
+
+      - name: Terraform Apply 1
+        run: terraform apply -var-file=region.us-east-1.dev.tfvars -auto-approve
+
+      - name: Select Workspace 2
+        run: terraform workspace new default
+
+      - name: Terraform Apply 2
+        run: terraform apply -var-file=region.us-east-2.prod.tfvars -auto-approve
