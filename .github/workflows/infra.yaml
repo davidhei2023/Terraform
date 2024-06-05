@@ -36,7 +36,7 @@ jobs:
 
       - name: Copy TF Vars for Workspace 1
         run: |
-          cp region.us-east-1.dev.tfvars tf_workspace/region.us-east-1.dev.tfvars
+          cp tf_workspace/region.us-east-1.dev.tfvars tf_workspace/region.us-east-1.dev.tfvars
 
       - name: Select Workspace 1
         run: |
@@ -50,7 +50,7 @@ jobs:
 
       - name: Copy TF Vars for Workspace 2
         run: |
-          cp region.us-east-2.prod.tfvars tf_workspace/region.us-east-2.prod.tfvars
+          cp tf_workspace/region.us-east-2.prod.tfvars tf_workspace/region.us-east-2.prod.tfvars
 
       - name: Select Workspace 2
         run: |
