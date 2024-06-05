@@ -24,7 +24,7 @@ provider "aws" {
 resource "aws_instance" "app_server" {
   ami = var.ami_id
   instance_type = "t2.micro"
-  user_data = file(".terraform/deploy.sh")
+  #user_data = file(".terraform/deploy.sh")
   key_name = var.key_name
 
   tags = {
