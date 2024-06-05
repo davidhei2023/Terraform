@@ -17,3 +17,8 @@ variable "key_name" {
    description = "davidhei-ohio-key"
    type        = string
 }
+
+variable "instance_type" {
+   description = "t2.micro"
+   type = string
+}

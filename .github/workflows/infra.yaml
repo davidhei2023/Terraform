@@ -59,7 +59,7 @@ jobs:
       - name: Select Workspace 3
         run: |
           cd tf_workspace
-          terraform workspace new eu-north-1 || terraform workspace select default
+          terraform workspace new eu-north-1 || terraform workspace select eu-north-1
 
       - name: Terraform Apply 3
         run: |

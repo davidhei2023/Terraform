@@ -23,12 +23,12 @@ provider "aws" {
 
 resource "aws_instance" "app_server" {
   ami = var.ami_id
-  instance_type = "t2.micro"
+  instance_type = var.instance_type
   #user_data = file(".terraform/deploy.sh")
   key_name = var.key_name
 
   tags = {
-    Name = "davidhei-ngnix-terraform-${var.env}"
+    Name = "davidhei-Terraform-${var.env}"
     Terraform = "true"
   }
 }
