@@ -55,3 +55,13 @@ jobs:
         run: |
           cd tf_workspace
           terraform apply -var-file=region.us-east-2.prod.tfvars -auto-approve
+
+      - name: Select Workspace 3
+        run: |
+          cd tf_workspace
+          terraform workspace new eu-north-1 || terraform workspace select default
+
+      - name: Terraform Apply 3
+        run: |
+          cd tf_workspace
+          terraform apply -var-file=region.eu-north-1.prod.tfvars -auto-approve
