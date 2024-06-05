@@ -17,12 +17,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-#      - name: Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: us-east-2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
@@ -34,9 +34,9 @@ jobs:
           cd tf_workspace
           terraform init
 
-      - name: Copy TF Vars for Workspace 1
-        run: |
-          cp tf_workspace/region.us-east-1.dev.tfvars tf_workspace/region.us-east-1.dev.tfvars2
+#      - name: Copy TF Vars for Workspace 1
+#        run: |
+#          cp tf_workspace/region.us-east-1.dev.tfvars tf_workspace/region.us-east-1.dev.tfvars2
 
       - name: Select Workspace 1
         run: |
@@ -46,11 +46,11 @@ jobs:
       - name: Terraform Apply 1
         run: |
           cd tf_workspace
-          terraform apply -var-file=region.us-east-1.dev.tfvars2 -auto-approve
+          terraform apply -var-file=region.us-east-1.dev.tfvars -auto-approve
 
-      - name: Copy TF Vars for Workspace 2
-        run: |
-          cp tf_workspace/region.us-east-2.prod.tfvars tf_workspace/region.us-east-2.prod.tfvars2
+#      - name: Copy TF Vars for Workspace 2
+#        run: |
+#          cp tf_workspace/region.us-east-2.prod.tfvars tf_workspace/region.us-east-2.prod.tfvars2
 
       - name: Select Workspace 2
         run: |
@@ -60,4 +60,4 @@ jobs:
       - name: Terraform Apply 2
         run: |
           cd tf_workspace
-          terraform apply -var-file=region.us-east-2.prod.tfvars2 -auto-approve
+          terraform apply -var-file=region.us-east-2.prod.tfvars -auto-approve
