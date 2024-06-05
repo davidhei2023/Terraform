@@ -12,6 +12,7 @@ terraform {
     region = "us-east-2"
     # optional: dynamodb_table = "<table-name>"
   }
+
   required_version = ">= 1.2.0"
 }
 
