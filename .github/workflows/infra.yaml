@@ -29,6 +29,12 @@ jobs:
         with:
           terraform_version: 1.8.4
 
+      - name: Copy tfvars files
+        run: |
+          mkdir -p /home/runner/work/_temp/tfvars
+          cp tf_workspace/region.us-east-1.dev.tfvars /home/runner/work/_temp/tfvars/
+          cp tf_workspace/region.us-east-2.prod.tfvars /home/runner/work/_temp/tfvars/
+
       - name: Terraform Init
         run: |
           cd tf_workspace
@@ -37,12 +43,11 @@ jobs:
       - name: Select Workspace 1
         run: terraform workspace new us-east-1
 
-
       - name: Terraform Apply 1
-        run: terraform apply -var-file=region.us-east-1.dev.tfvars -auto-approve
+        run: terraform apply -var-file=/home/runner/work/_temp/tfvars/region.us-east-1.dev.tfvars -auto-approve
 
       - name: Select Workspace 2
         run: terraform workspace new default
 
       - name: Terraform Apply 2
-        run: terraform apply -var-file=region.us-east-2.prod.tfvars -auto-approve
+        run: terraform apply -var-file=/home/runner/work/_temp/tfvars/region.us-east-2.prod.tfvars -auto-approve
