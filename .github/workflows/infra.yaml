@@ -43,18 +43,18 @@ jobs:
       - name: Terraform Apply 1
         run: |
           cd tf_workspace
-          terraform apply -var-file=region.us-east-1.dev.tfvars -auto-approve
+          terraform apply -var-file=region.us-east-1.tfvars -auto-approve
 
 
       - name: Select Workspace 2
         run: |
           cd tf_workspace
-          terraform workspace new default || terraform workspace select default
+          terraform workspace new us-east-2 || terraform workspace select us-east-2
 
       - name: Terraform Apply 2
         run: |
           cd tf_workspace
-          terraform apply -var-file=region.us-east-2.prod.tfvars -auto-approve
+          terraform apply -var-file=region.us-east-2.tfvars -auto-approve
 
       - name: Select Workspace 3
         run: |
@@ -64,4 +64,4 @@ jobs:
       - name: Terraform Apply 3
         run: |
           cd tf_workspace
-          terraform apply -var-file=region.eu-north-1.prod.tfvars -auto-approve
+          terraform apply -var-file=region.eu-north-1.tfvars -auto-approve
