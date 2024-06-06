@@ -65,3 +65,4 @@ jobs:
         run: |
           cd tf_workspace
           terraform apply -var-file=region.eu-north-1.tfvars -auto-approve
+
